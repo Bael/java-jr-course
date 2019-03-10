@@ -1,4 +1,4 @@
-package io.github.bael.javacourse.knight;
+package io.github.bael.javacourse.knight.chances;
 
 public interface Chance {
     /**
