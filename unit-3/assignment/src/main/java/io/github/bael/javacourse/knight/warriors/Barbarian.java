@@ -16,6 +16,9 @@ public class Barbarian extends Warrior {
         super(state);
     }
 
+    /**
+     * При пониженном здоровье урон от силы в пять раз выше
+     */
     @Override
     public void attackEnemy(Chance chance, Warrior warrior) {
         int multiplication = 1;

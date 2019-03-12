@@ -9,6 +9,9 @@ import org.junit.Test;
 
 public class BarbarianTest {
 
+    /**
+     * При здоровье более 20% от максимума- урон обычный
+     */
     @Test
     public void attackEnemyNormal() {
 
@@ -17,7 +20,6 @@ public class BarbarianTest {
 
         WarriorState state = WarriorState.builder().attackLevel(100)
                 .defenceLevel(100).hp(1000 - 799).maxHP(1000).strength(100).level(1).build();
-
 
 
         Barbarian konan = new Barbarian(state);
@@ -31,6 +33,9 @@ public class BarbarianTest {
 
     }
 
+    /**
+     * При здоровье 20% от максимума и ниже - увеличиваем урон (сила * 5)
+     */
     @Test
     public void attackEnemyInRage() {
         WarriorState state = WarriorState.builder().attackLevel(100)

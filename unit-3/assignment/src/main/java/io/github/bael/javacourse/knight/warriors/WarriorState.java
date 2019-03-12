@@ -73,10 +73,10 @@ public class WarriorState implements ActorState {
         return getHP() > 0;
     }
 
-    @Override
     /**
      * Создаем новый объект при изменениях над текущим, для иммутабельности
      */
+    @Override
     public ActorState takeDamage(int damage) {
         System.out.println("taking damage " + damage);
         int mutatedHp = hp - Math.min(hp, Math.max(0, damage));
@@ -95,6 +95,10 @@ public class WarriorState implements ActorState {
                 '}';
     }
 
+    /**
+     * Внутренний класс для паттерна builder. static  означает что данный класс не может обращаться к полям внешнего
+     * класса WarriorState, и не будет создаваться на каждый экземпляр объекта WarriorState
+     */
     public static class WarriorStateBuilder {
         private int attackLvl;
         private int defenceLvl;
