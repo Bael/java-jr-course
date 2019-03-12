@@ -5,13 +5,12 @@ import io.github.bael.javacourse.knight.chances.Chance;
 /**
  * Рыцарь. наносит урон черному рыцарю с удвоенной силой.
  */
-public class Knight extends Warrior {
+public class Knight implements Actor {
 
     private Knight() {
     }
 
     public Knight(ActorState state) {
-        super(state);
     }
 
 
@@ -22,6 +21,21 @@ public class Knight extends Warrior {
      */
     public void attackEnemy(Chance chance, BlackKnight blackKnight) {
 
-       
+
+    }
+
+    @Override
+    public void attackEnemy(Chance chance, Actor warrior) {
+
+    }
+
+    @Override
+    public void receiveAttack(Damage strike) {
+
+    }
+
+    @Override
+    public ActorState getState() {
+        return null;
     }
 }
