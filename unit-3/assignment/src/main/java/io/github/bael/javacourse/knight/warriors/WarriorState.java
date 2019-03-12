@@ -75,11 +75,15 @@ public class WarriorState implements ActorState {
 
     /**
      * Создаем новый объект при изменениях над текущим, для иммутабельности
+     * уменьшаем здоровье на полученый урон
      */
     @Override
     public ActorState takeDamage(int damage) {
+
         System.out.println("taking damage " + damage);
-        int mutatedHp = hp - Math.min(hp, Math.max(0, damage));
+        // todo - исправить расчет урона
+        int mutatedHp = hp - damage;
+
         return new WarriorState(this.attackLvl, this.defenceLvl, mutatedHp, this.level, this.strength, this.maxHP);
     }
 

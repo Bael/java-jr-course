@@ -23,14 +23,18 @@ public abstract class Warrior implements Actor {
     public void attackEnemy(Chance chance, Warrior warrior) {
         System.out.println("Attacking the enemy! " + warrior);
         int percent = chance.getProbability();
-        Damage damage = new Damage(state.getAttackLevel() + state.getStrength(), detectCriticalAttackChance(percent));
+        // to do insert damage calculation
+        int damagevalue = 0; //
+        Damage damage = new Damage(damagevalue, detectCriticalAttackChance(percent));
         System.out.println("Attack damage is ! " + damage);
         warrior.receiveAttack(damage);
     }
 
     // считаем что урон критический если вероятность критического удара + уровень воина выше порога
     protected boolean detectCriticalAttackChance(int percent) {
-        return percent + state.getLevel() >= CRITICAL_DAMAGE_EDGE;
+        // todo
+        //   возвращать true если процент + уровень больше или равен CRITICAL_DAMAGE_EDGE;
+        return false;
     }
 
 
@@ -41,14 +45,16 @@ public abstract class Warrior implements Actor {
     public void receiveAttack(Damage strike) {
         System.out.println("Recieveing the attack: " + strike);
 
-        // урон не может быть отрицательным
-        int damage = Math.max(0, strike.getValue() - state.getDefenceLevel());
 
+        // todo - поглощенный урон = защита - урон
+        int damage = strike.getValue();
+
+        // если удар  критический - утраиваем урон
         if (strike.getIsCritical()) {
-            damage *= CRITICAL_DAMAGE_RATE;
+            // todo
         }
 
-        this.state = this.state.takeDamage(damage);
+        // todo нужно уменьшить здоровье юнит. для этого в интерфейсе ActorState есть метод takeDamage. Примените его
 
     }
 

@@ -22,12 +22,6 @@ public class Knight extends Warrior {
      */
     public void attackEnemy(Chance chance, BlackKnight blackKnight) {
 
-        System.out.println("Attacking the blackKnight with hatred!");
-
-        boolean isCritical = detectCriticalAttackChance(chance.getProbability());
-
-        Damage damage = new Damage(state.getAttackLevel() + 2 * state.getStrength(), isCritical);
-
-        blackKnight.receiveAttack(damage);
+       
     }
 }
