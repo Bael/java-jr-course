@@ -10,7 +10,7 @@ public class Knight extends Warrior {
     private Knight() {
     }
 
-    public Knight(WarriorState state) {
+    public Knight(ActorState state) {
         super(state);
     }
 

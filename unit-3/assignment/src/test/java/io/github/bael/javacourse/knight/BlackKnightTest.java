@@ -11,9 +11,11 @@ public class BlackKnightTest {
 
     @Test
     public void testSolidDefence() {
-        WarriorState blackKnightState = WarriorState.builder().attackLevel(100).defenceLevel(300).hp(1000).strength(100).level(1).build();
+        WarriorState blackKnightState = WarriorState.builder().attackLevel(100)
+                .defenceLevel(300).hp(1000).maxHP(1000).strength(100).level(1).build();
 
-        WarriorState whiteKnightState = WarriorState.builder().attackLevel(100).defenceLevel(100).hp(1000).strength(100).level(1).build();
+        WarriorState whiteKnightState = WarriorState.builder().attackLevel(100)
+                .defenceLevel(100).hp(1000).maxHP(1000).strength(100).level(1).build();
 
         Knight knight = new Knight(whiteKnightState);
         BlackKnight blackKnight = new BlackKnight(blackKnightState);

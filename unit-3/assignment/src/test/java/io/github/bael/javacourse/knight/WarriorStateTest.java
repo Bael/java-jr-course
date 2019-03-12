@@ -1,5 +1,6 @@
 package io.github.bael.javacourse.knight;
 
+import io.github.bael.javacourse.knight.warriors.ActorState;
 import io.github.bael.javacourse.knight.warriors.WarriorState;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,20 +17,24 @@ public class WarriorStateTest {
                         .attackLevel(100)
                         .defenceLevel(100)
                         .hp(1000)
+                        .maxHP(1000)
                         .strength(100)
                         .level(1).build();
         Assert.assertTrue(state.isAlive());
-        state.takeDamage(999);
-        Assert.assertTrue(state.isAlive());
-        state.takeDamage(1);
-        Assert.assertFalse(state.isAlive());
-        state.takeDamage(1000);
 
-        Assert.assertEquals(0, state.getHP());
+        ActorState damagedState = state.takeDamage(999);
+        Assert.assertTrue(damagedState.isAlive());
 
-        state.takeDamage(-1);
-        Assert.assertFalse(state.isAlive());
-        Assert.assertEquals(0, state.getHP());
+        ActorState heavilyDamagedState = damagedState.takeDamage(1);
+        Assert.assertFalse(heavilyDamagedState.isAlive());
+        heavilyDamagedState.takeDamage(1000);
+
+        Assert.assertEquals(0, heavilyDamagedState.getHP());
+
+        // отрицательный урон не должен лечить
+        ActorState moreHeavilyDamagedState = heavilyDamagedState.takeDamage(-1);
+        Assert.assertFalse(moreHeavilyDamagedState.isAlive());
+        Assert.assertEquals(0, moreHeavilyDamagedState.getHP());
 
     }
 
@@ -41,6 +46,7 @@ public class WarriorStateTest {
                         .attackLevel(101)
                         .defenceLevel(102)
                         .hp(1000)
+                        .maxHP(1000)
                         .strength(103)
                         .level(1);
         WarriorState state = builder.build();

@@ -17,6 +17,6 @@ public interface ActorState {
 
     boolean isAlive();
 
-    void takeDamage(int damage);
+    ActorState takeDamage(int damage);
 
 }

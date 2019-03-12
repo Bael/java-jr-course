@@ -11,7 +11,8 @@ public class KnightTest {
 
     @Test
     public void checkKnightAttack() {
-        WarriorState.WarriorStateBuilder stateBuilder = WarriorState.builder().attackLevel(100).defenceLevel(100).hp(1000).strength(100).level(1);
+        WarriorState.WarriorStateBuilder stateBuilder = WarriorState.builder().attackLevel(100)
+                .defenceLevel(100).hp(1000).maxHP(1000).strength(100).level(1);
         Knight knight = new Knight(stateBuilder.build());
         BlackKnight blackKnight = new BlackKnight(stateBuilder.build());
         Knight whiteknight = new Knight(stateBuilder.build());

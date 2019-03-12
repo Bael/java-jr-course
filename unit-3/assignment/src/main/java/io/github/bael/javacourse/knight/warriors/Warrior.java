@@ -5,12 +5,13 @@ import io.github.bael.javacourse.knight.chances.Chance;
 public abstract class Warrior implements Actor {
 
     private static final int CRITICAL_DAMAGE_EDGE = 95;
-    WarriorState state;
+    public static final int CRITICAL_DAMAGE_RATE = 3;
+    ActorState state;
 
     protected Warrior() {
     }
 
-    public Warrior(WarriorState state) {
+    public Warrior(ActorState state) {
         this.state = state;
     }
 
@@ -27,6 +28,7 @@ public abstract class Warrior implements Actor {
         warrior.receiveAttack(damage);
     }
 
+    // считаем что урон критический если вероятность критического удара + уровень воина выше порога
     protected boolean detectCriticalAttackChance(int percent) {
         return percent + state.getLevel() >= CRITICAL_DAMAGE_EDGE;
     }
@@ -41,11 +43,12 @@ public abstract class Warrior implements Actor {
 
         // урон не может быть отрицательным
         int damage = Math.max(0, strike.getValue() - state.getDefenceLevel());
+
         if (strike.getIsCritical()) {
-            damage *= 3;
+            damage *= CRITICAL_DAMAGE_RATE;
         }
 
-        this.state.takeDamage(damage);
+        this.state = this.state.takeDamage(damage);
 
     }
 

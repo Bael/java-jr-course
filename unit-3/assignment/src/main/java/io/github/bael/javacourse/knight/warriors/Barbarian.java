@@ -12,7 +12,7 @@ public class Barbarian extends Warrior {
     private Barbarian() {
     }
 
-    public Barbarian(WarriorState state) {
+    public Barbarian(ActorState state) {
         super(state);
     }
 

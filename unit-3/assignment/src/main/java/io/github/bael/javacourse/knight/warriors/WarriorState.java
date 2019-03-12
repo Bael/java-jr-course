@@ -1,20 +1,23 @@
 package io.github.bael.javacourse.knight.warriors;
 
+/**
+ * В данном классе содержится информация о состоянии бойца, здоровье, атака и защита.
+ */
 public class WarriorState implements ActorState {
 
     private int attackLvl;
     private int defenceLvl;
     private int hp;
-    private int initialHP;
+    private int maxHP;
     private int level;
     private int strength;
 
 
-    private WarriorState(int attackLvl, int defenceLvl, int hp, int level, int strength) {
+    private WarriorState(int attackLvl, int defenceLvl, int hp, int level, int strength, int maxHP) {
         this.attackLvl = attackLvl;
         this.defenceLvl = defenceLvl;
         this.hp = hp;
-        this.initialHP = hp;
+        this.maxHP = maxHP;
         this.level = level;
         this.strength = strength;
 
@@ -37,7 +40,7 @@ public class WarriorState implements ActorState {
 
     @Override
     public int getMaxHP() {
-        return initialHP;
+        return maxHP;
     }
 
     @Override
@@ -71,15 +74,32 @@ public class WarriorState implements ActorState {
     }
 
     @Override
-    public void takeDamage(int damage) {
+    /**
+     * Создаем новый объект при изменениях над текущим, для иммутабельности
+     */
+    public ActorState takeDamage(int damage) {
         System.out.println("taking damage " + damage);
-        hp -= Math.min(hp, Math.max(0, damage));
+        int mutatedHp = hp - Math.min(hp, Math.max(0, damage));
+        return new WarriorState(this.attackLvl, this.defenceLvl, mutatedHp, this.level, this.strength, this.maxHP);
+    }
+
+    @Override
+    public String toString() {
+        return "WarriorState{" +
+                "attackLvl=" + attackLvl +
+                ", defenceLvl=" + defenceLvl +
+                ", hp=" + hp +
+                ", maxHP=" + maxHP +
+                ", level=" + level +
+                ", strength=" + strength +
+                '}';
     }
 
     public static class WarriorStateBuilder {
         private int attackLvl;
         private int defenceLvl;
         private int hp;
+        private int maxHP;
         private int level;
         private int strength;
 
@@ -104,6 +124,11 @@ public class WarriorState implements ActorState {
             return this;
         }
 
+        public WarriorStateBuilder maxHP(int maxHP) {
+            this.maxHP = maxHP;
+            return this;
+        }
+
         public WarriorStateBuilder strength(int strength) {
             this.strength = strength;
             return this;
@@ -122,8 +147,11 @@ public class WarriorState implements ActorState {
             requirePositive(this.hp);
             requirePositive(this.level);
             requirePositive(this.strength);
+            requirePositive(this.maxHP);
 
-            return new WarriorState(this.attackLvl, this.defenceLvl, this.hp, this.level, this.strength);
+            requirePositive(this.maxHP - this.hp);
+
+            return new WarriorState(this.attackLvl, this.defenceLvl, this.hp, this.level, this.strength, this.maxHP);
         }
 
 

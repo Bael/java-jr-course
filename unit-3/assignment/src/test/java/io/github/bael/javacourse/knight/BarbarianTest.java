@@ -13,12 +13,13 @@ public class BarbarianTest {
     public void attackEnemyNormal() {
 
         WarriorState.WarriorStateBuilder stateBuilder = WarriorState.builder().attackLevel(100)
-                .defenceLevel(100).hp(1000).strength(100).level(1);
+                .defenceLevel(100).hp(1000).maxHP(1000).strength(100).level(1);
 
         WarriorState state = WarriorState.builder().attackLevel(100)
-                .defenceLevel(100).hp(1000).strength(100).level(1).build();
+                .defenceLevel(100).hp(1000 - 799).maxHP(1000).strength(100).level(1).build();
 
-        state.takeDamage(799);
+
+
         Barbarian konan = new Barbarian(state);
         BlackKnight blackKnight = new BlackKnight(stateBuilder.build());
 
@@ -33,13 +34,17 @@ public class BarbarianTest {
     @Test
     public void attackEnemyInRage() {
         WarriorState state = WarriorState.builder().attackLevel(100)
-                .defenceLevel(100).hp(1000).strength(100).level(1).build();
-        state.takeDamage(800);
+                .defenceLevel(100).hp(1000).strength(100).level(1).maxHP(1000).build();
+
 
         WarriorState knightState = WarriorState.builder().attackLevel(100)
-                .defenceLevel(100).hp(1000).strength(100).level(1).build();
+                .defenceLevel(100).hp(1000).strength(100).maxHP(1000).level(1).build();
 
-        Barbarian konan = new Barbarian(state);
+        Barbarian konan = new Barbarian(state.takeDamage(800));
+
+        System.out.println(konan.getState());
+
+
         BlackKnight blackKnight = new BlackKnight(knightState);
 
         BadLuckChance chance = new BadLuckChance();
