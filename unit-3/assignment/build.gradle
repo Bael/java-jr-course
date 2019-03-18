@@ -29,4 +29,4 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'knighttale.App'
+mainClassName = 'io.github.bael.javacourse.knight.App'
