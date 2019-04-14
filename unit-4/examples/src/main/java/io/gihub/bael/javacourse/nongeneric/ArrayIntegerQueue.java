@@ -2,16 +2,16 @@ package io.gihub.bael.javacourse.nongeneric;
 import java.util.Arrays;
 
 public class ArrayIntegerQueue implements IntegerQueue {
-    private final static int INIT_SIZE = 100;
+    private final static int INIT_SIZE = 10;
     private Integer[] internal;
     private int head = 0, tail = 0;
     public ArrayIntegerQueue() { internal = new Integer[INIT_SIZE]; }
 
     @Override
     public void add(Integer element) {
-        internal[++tail] = element;
-        if (tail == INIT_SIZE) {
-            increaseSize(INIT_SIZE * 2);
+        internal[tail++] = element;
+        if (tail == internal.length) {
+            increaseSize(internal.length * 2);
         }
     }
 
