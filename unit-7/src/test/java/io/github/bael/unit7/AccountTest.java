@@ -37,7 +37,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testPremierClientWithdOverdraft() {
+    public void testPremierClientWithOverdraft() {
         Account a = new Account(false, BigDecimal.valueOf(1000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(0));
         assertEquals(true, a.withdraw(BigDecimal.valueOf(1000)));
 
@@ -51,15 +51,12 @@ public class AccountTest {
 
     }
 
+
+
     @Test
     public void predicateAndStreams() {
-        List<Account> customers = Arrays.asList(
-            new Account(false, BigDecimal.valueOf(1000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(0)),
-            new Account(true, BigDecimal.valueOf(2000), BigDecimal.valueOf(500), "regular", BigDecimal.valueOf(0)),
-            new Account(false, BigDecimal.valueOf(5000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(50)),
-            new Account(false, BigDecimal.valueOf(10000), BigDecimal.valueOf(0), "regular", BigDecimal.valueOf(0)),
-            new Account(false, BigDecimal.valueOf(1000000), BigDecimal.valueOf(5000000), "premier", BigDecimal.valueOf(0))
-        );
+
+        List<Account> customers = prepareList();
 
         assertEquals(3, customers.stream().filter(account -> Account.isPremier().test(account)).count());
         assertEquals(1, customers.stream().filter(account -> Account.isAccountable().negate().test(account)).count());
@@ -72,6 +69,14 @@ public class AccountTest {
 
         assertEquals(1016000L, result);
 
+
+    }
+
+    @Test
+    public void predicateAndStreams2() {
+
+        List<Account> customers = prepareList();
+
         // sorting customers
         List<Account> sortedCustomers = customers.stream().sorted(Comparator.comparing(Account::getAmount)).collect(Collectors.toList());
         System.out.println(sortedCustomers);
@@ -83,5 +88,27 @@ public class AccountTest {
 
         System.out.println(sortedCustomers2);
 
+    }
+
+    @Test
+    public void predicateAndStreams3() {
+
+        List<Account> customers = prepareList();
+
+        // partition by
+        System.out.println(customers.stream().collect(Collectors.partitioningBy(account -> Account.isPremier().test(account))));
+
+
+    }
+
+    private List<Account> prepareList() {
+        List<Account> customers = Arrays.asList(
+            new Account(false, BigDecimal.valueOf(1000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(0)),
+            new Account(true, BigDecimal.valueOf(2000), BigDecimal.valueOf(500), "regular", BigDecimal.valueOf(0)),
+            new Account(false, BigDecimal.valueOf(5000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(50)),
+            new Account(false, BigDecimal.valueOf(10000), BigDecimal.valueOf(0), "regular", BigDecimal.valueOf(0)),
+            new Account(false, BigDecimal.valueOf(1000000), BigDecimal.valueOf(5000000), "premier", BigDecimal.valueOf(0))
+        );
+        return customers;
     }
 }
