@@ -9,7 +9,8 @@ public class IntegerAccumulatorTest {
 
     @Test
     public void testMaxValue() {
-        IntegerAccumulator acc = new IntegerAccumulator(0, (current, element) -> (current > element ? current : element));
+        IntegerAccumulator acc = new IntegerAccumulator(0,
+            (current, element) -> (current > element ? current : element));
 
         acc.add(2);
         acc.add(-3);
@@ -19,7 +20,8 @@ public class IntegerAccumulatorTest {
 
     @Test
     public void testMinValue() {
-        IntegerAccumulator acc = new IntegerAccumulator(0, (current, element) -> (current < element ? current : element));
+        IntegerAccumulator acc = new IntegerAccumulator(0,
+            (current, element) -> (current < element ? current : element));
 
         acc.add(2);
         acc.add(-3);

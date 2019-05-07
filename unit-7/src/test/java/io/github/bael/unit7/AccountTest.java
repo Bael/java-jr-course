@@ -17,7 +17,8 @@ public class AccountTest {
 
     @Test
     public void testValidClientWithdraw() {
-        Account a = new Account(false, BigDecimal.valueOf(1000), BigDecimal.ZERO, "regular", BigDecimal.ZERO);
+        Account a = new Account(false, BigDecimal.valueOf(1000),
+            BigDecimal.ZERO, "regular", BigDecimal.ZERO);
         assertEquals(true, a.withdraw(BigDecimal.valueOf(999)));
         System.out.println(a);
         assertEquals(true, a.withdraw(BigDecimal.valueOf(1)));
@@ -27,7 +28,8 @@ public class AccountTest {
 
     @Test
     public void testValidClientWithdrawWithLimit() {
-        Account a = new Account(false, BigDecimal.valueOf(1000), BigDecimal.ZERO, "regular", BigDecimal.valueOf(1));
+        Account a = new Account(false, BigDecimal.valueOf(1000),
+            BigDecimal.ZERO, "regular", BigDecimal.valueOf(1));
         assertEquals(true, a.withdraw(BigDecimal.valueOf(999)));
 
         // no money
@@ -38,9 +40,11 @@ public class AccountTest {
 
     @Test
     public void testPremierClientWithOverdraft() {
-        Account a = new Account(false, BigDecimal.valueOf(1000), BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(0));
+        Account a = new Account(false, BigDecimal.valueOf(1000),
+            BigDecimal.valueOf(500), "premier", BigDecimal.valueOf(0));
         assertEquals(true, a.withdraw(BigDecimal.valueOf(1000)));
 
+        System.out.println(a);
         // no money?
         assertEquals(true, a.withdraw(BigDecimal.valueOf(500)));
 
@@ -58,12 +62,25 @@ public class AccountTest {
 
         List<Account> customers = prepareList();
 
-        assertEquals(3, customers.stream().filter(account -> Account.isPremier().test(account)).count());
-        assertEquals(1, customers.stream().filter(account -> Account.isAccountable().negate().test(account)).count());
-        assertEquals(2, customers.stream().filter(account -> account.getAmount().compareTo(BigDecimal.valueOf(10000)) >= 0).count());
+        assertEquals(3,
+            customers.stream()
+                     .filter(account -> Account.isPremier()
+                                               .test(account))
+                     .count());
+        assertEquals(1, customers.stream().
+            filter(account -> Account.isAccountable()
+                                     .negate()
+                                     .test(account))
+                                 .count());
+
+        assertEquals(2, customers.stream()
+                                 .filter(account ->
+                                     account.getAmount().compareTo(BigDecimal.valueOf(10000)) >= 0).count());
 
         long result = customers.stream()
                                .filter(account -> Account.isAccountable().test(account))
+
+
                                .map(account -> account.getAmount().longValueExact())
                                .reduce((aLong, aLong2) -> aLong + aLong2).orElse(0L);
 
@@ -78,7 +95,10 @@ public class AccountTest {
         List<Account> customers = prepareList();
 
         // sorting customers
-        List<Account> sortedCustomers = customers.stream().sorted(Comparator.comparing(Account::getAmount)).collect(Collectors.toList());
+        List<Account> sortedCustomers = customers.stream()
+                                                 .sorted(
+                                                     Comparator.comparing(Account::getAmount))
+                                                 .collect(Collectors.toList());
         System.out.println(sortedCustomers);
 
         List<Account> sortedCustomers2 = customers.stream().sorted(Comparator.comparing(Account::getAmount))
@@ -96,7 +116,8 @@ public class AccountTest {
         List<Account> customers = prepareList();
 
         // partition by
-        System.out.println(customers.stream().collect(Collectors.partitioningBy(account -> Account.isPremier().test(account))));
+        System.out.println(customers.stream().collect(
+            Collectors.partitioningBy(account -> Account.isPremier().test(account))));
 
 
     }

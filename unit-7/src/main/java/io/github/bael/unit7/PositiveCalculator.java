@@ -5,4 +5,6 @@ public class PositiveCalculator implements SimpleAdder, PositiveAdder {
     public int add(int a, int b) {
         return PositiveAdder.super.add(a, b);
     }
+
+
 }

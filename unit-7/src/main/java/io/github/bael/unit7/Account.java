@@ -43,8 +43,13 @@ public class Account {
         return account -> account.amount.compareTo(account.leftoverLimit) >= 0;
     }
 
+    // превышен овердрафт
     public static Predicate<Account> isOverdraftOverflowed() {
-        return hasPositiveBalance().or(account -> account.amount.abs().compareTo(account.overdraftAmount) > 0);
+        return
+                account -> account.amount.compareTo(BigDecimal.ZERO) <= 0 &&
+                    account.amount.abs().compareTo(account.overdraftAmount) > 0;
+
+
     }
 
     public boolean withdraw(BigDecimal amount) {
