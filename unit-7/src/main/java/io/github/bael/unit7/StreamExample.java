@@ -54,7 +54,7 @@ public class StreamExample {
                         // лямбда выражение
                         integer -> {
                             // does not compile
-                            // prefix = "кул хацкер";
+                           // prefix = "кул хацкер";
                             return String.format("%s: %d", prefix, integer);
                         }
                 ).collect(Collectors.toList());

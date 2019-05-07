@@ -29,6 +29,7 @@ public class IntegerAccumulatorTest {
 
     @Test
     public void testMinValue2() {
+        // Method reference
         IntegerAccumulator acc = new IntegerAccumulator(0, IntegerAccumulator::minValue);
 
         acc.add(2);
