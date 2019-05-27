@@ -1,8 +1,13 @@
 plugins {
     id 'java'
 
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
 }
 
+
+//springBoot {
+//    mainClass 'io.github.bael.unit8.Unit8Application'
+//}
 group 'io.github.bael'
 version '1.0-SNAPSHOT'
 
@@ -15,7 +20,9 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile group: 'org.springframework.boot', name: 'spring-boot', version: '2.1.2.RELEASE'
+    compile 'org.springframework:spring-webmvc:5.1.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.1.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '2.1.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.2.RELEASE'
 
