@@ -63,6 +63,11 @@ Spring Framework - большой проект включающий в себя 
 Шаг 1: Заходим на [Spring Initializer](https://start.spring.io/)  
 Шаг 2: Формируем нужный состав приложения, скачиваем его и открываем из студии 
    * 
+Пишем приложение
+Заполняем его данными: 
+
+curl -d '{"name":"Сколько примитивных типов в Java?", "description":"Укажите точное количество примитивных типов в java"}' -H "Content-Type: application/json" -X POST http://localhost:8080/questions/
+curl -d '{"name":"Какие из реализаций интерфейса map вы можете назвать?", "description":""}' -H "Content-Type: application/json" -X POST http://localhost:8080/questions/
     
 Шаг 3: Profit!  
 
