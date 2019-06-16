@@ -3,6 +3,7 @@ package io.github.bael.xml;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 public class XMLApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("ApplicationXMLConfig.xml");
@@ -14,6 +15,9 @@ public class XMLApplication {
 
         System.out.println(serviceDog.adorablePet().speak());
         System.out.println(serviceCat.adorablePet().speak());
+
+        System.out.println("cat's toy is: " + serviceCat.adorablePet().toy());
+
         System.out.println("default: " + service.adorablePet().speak());
     }
 }

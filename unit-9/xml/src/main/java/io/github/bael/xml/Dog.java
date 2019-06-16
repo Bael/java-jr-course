@@ -5,4 +5,9 @@ public class Dog extends Pet {
     public String speak() {
         return "woof!";
     }
+
+    @Override
+    public Toy toy() {
+        return null;
+    }
 }
