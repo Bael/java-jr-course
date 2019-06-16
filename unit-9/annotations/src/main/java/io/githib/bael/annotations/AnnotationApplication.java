@@ -15,13 +15,18 @@ public class AnnotationApplication {
         ApplicationContext context = new AnnotationConfigApplicationContext(AnnotationApplication.class);
 
         GreeterService service = context.getBean(GreeterService.class);
+//
+//        System.out.print("Назовите себя:");
+//        Scanner scanner = new Scanner(System.in);
+//        String name = scanner.nextLine();
+//
+//        String greeting = service.getGreeter().greeting(name);
+//        System.out.println(greeting);
 
-        System.out.print("Назовите себя:");
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
+        // example 2
 
-        String greeting = service.getGreeter().greeting(name);
-        System.out.println(greeting);
+        StartGreeter startGreeter = context.getBean(StartGreeter.class);
+        startGreeter.greet();
 
 
     }

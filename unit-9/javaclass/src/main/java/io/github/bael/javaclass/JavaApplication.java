@@ -7,7 +7,8 @@ public class JavaApplication {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(TrainingCenterConfiguration.class);
 
-        TrainingCenter center = context.getBean(TrainingCenter.class);
+//        TrainingCenter center = context.getBean(TrainingCenter.class);
+        TrainingCenter center = context.getBean("trainingCenter", TrainingCenter.class);
 
         System.out.println(center.gloriousWarrior());
 
@@ -21,7 +22,7 @@ public class JavaApplication {
         // внутри вызова метода getBean идет проверка не получался ли уже такой бин, и если да то возвращается он же
         // без инициализации нового
 
-        // Давайте просто посмотрим что в нем
+//        // Давайте просто посмотрим что в нем
         System.out.println(cfg);
 
         for (String s : context.getBeanDefinitionNames()) {
@@ -29,7 +30,15 @@ public class JavaApplication {
             System.out.println(s + ">>" +context.getBean(s));
         }
 
+
+
+
+        // чтобы показать в каких случаях вызываются хуки
+        ((AnnotationConfigApplicationContext) context).close();
+
     }
+
+
 
 
 
