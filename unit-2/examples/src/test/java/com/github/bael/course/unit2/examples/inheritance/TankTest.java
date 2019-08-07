@@ -1,8 +1,7 @@
 package com.github.bael.course.unit2.examples.inheritance;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 public class TankTest {
     @Test
