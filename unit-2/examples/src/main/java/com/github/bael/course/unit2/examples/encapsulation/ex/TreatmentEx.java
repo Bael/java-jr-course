@@ -32,11 +32,13 @@ public class TreatmentEx {
     /**
      * Успешная медицинская процедура
      * */
-    public void treat() {
+    public int treat() {
         if (!receivedMedication) {
             this.receivedMedication = true;
             actualQuantity += plannedQuantity;
+            return actualQuantity;
         }
+        return 0;
     }
 
     public String getMedicationName() {
