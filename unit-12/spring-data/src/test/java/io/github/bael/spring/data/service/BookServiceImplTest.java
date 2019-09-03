@@ -2,6 +2,7 @@ package io.github.bael.spring.data.service;
 
 import io.github.bael.spring.data.SpringDataApplication;
 import io.github.bael.spring.data.data.BookRepository;
+import io.github.bael.spring.data.entity.Author;
 import io.github.bael.spring.data.entity.Book;
 import org.junit.Assert;
 import org.junit.Before;
@@ -67,6 +68,24 @@ public class BookServiceImplTest {
         Assert.assertEquals(2, bookService.findSame(book).size());
 
     }
+
+    @Test
+    public void testFindByAuthor() {
+
+        Author author = new Author();
+        author.setFirstname("Mark");
+        author.setLastname("Twain");
+
+        bookService.findByAuthor(1L);
+
+    }
+
+    @Test
+    public void testComplexQuery() {
+        Assert.assertEquals(2, bookService.complexQuery().size());
+    }
+
+
 
 
 }
