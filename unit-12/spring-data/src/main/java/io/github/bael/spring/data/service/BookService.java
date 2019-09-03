@@ -1,5 +1,6 @@
 package io.github.bael.spring.data.service;
 
+import io.github.bael.spring.data.entity.Author;
 import io.github.bael.spring.data.entity.Book;
 
 import java.util.List;
@@ -14,4 +15,8 @@ public interface BookService {
     List<Book> findByYear(int year);
 
     List<Book> findSame(Book book);
+
+    List<Book> findByAuthor(Long author_id);
+
+    List<Book> complexQuery();
 }

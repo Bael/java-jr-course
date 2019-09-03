@@ -2,11 +2,13 @@ package io.github.bael.spring.data.service;
 
 import io.github.bael.spring.data.data.BookRepository;
 import io.github.bael.spring.data.entity.Book;
-import org.springframework.data.domain.Example;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Service;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -35,5 +37,24 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findSame(Book book) {
         return bookRepository.findAll(Example.of(book));
+    }
+
+    @Override
+    public List<Book> findByAuthor(Long authorId) {
+        return bookRepository.findByAuthor(authorId);
+    }
+
+    @Override
+    public List<Book> complexQuery() {
+        return bookRepository.complexQueryMethod();
+    }
+
+    public Page<Book> findAtPage(int pageIndex,
+                                int pageNumber,
+                                Direction direction,
+                                String sortField) {
+        PageRequest request = PageRequest.of(pageIndex, pageNumber,
+            direction, sortField);
+        return bookRepository.findAll(request);
     }
 }
