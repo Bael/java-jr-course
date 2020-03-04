@@ -1,9 +1,7 @@
 package inheritance;
 
-import animal.Feeder;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.Objects;
-import lombok.Builder;
 import lombok.Getter;
 
 
@@ -11,53 +9,22 @@ import lombok.Getter;
 public class Lion extends Cat {
 
     private String meow = "ARRRRGGGHHH";
-    private Date birthDay;
 
-    public Lion(String[] awards, String passportCode, int age, String name, double weight, String[] owners,
-        Long cost, double tailLength, double length, String meow, Date birthDay) {
-        super(awards, passportCode, age, name, weight, owners, cost, tailLength, length, meow, birthDay);
+
+    public String hearMyRoar() {
+        return meow + System.lineSeparator() + paint();
     }
 
     public Lion() {
 
     }
 
-
-    public void sleep(int duration, String site) {
-        // some code ...
+    public Lion(String[] awards, String passportCode, String name, String color, double weight, String[] owners,
+        Long cost, LocalDate birthDay) {
+        super(awards, passportCode, name, color, weight, owners, cost, birthDay);
     }
 
-    /**
-     * Позвать кота пообедать
-     * Предусловие:
-     *
-     * @param feeder Кормушка, должна быть указана, и не пуста.
-     * Кот не должен быть сыт.
-     * Постусловие:
-     * Здоровье кота повышается на 30%
-     */
-    private void takeLunch(Feeder feeder) {
-        Objects.requireNonNull(feeder, "Где кормушка?");
-        if (feeder.isEmpty()) {
-            throw new RuntimeException("(Съем!)");
-        }
-        eat(feeder.getFood());
-    }
-
-    private void eat(Object food) {
-
-    }
-
-
-    String meow() {
-        return paint() + System.lineSeparator()
-            + meow;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
+    @Override
     public String paint() {
         return "                       \\\\\\\\\\\\\\////\n"
             + "                             \\\\//\\/\\\\\\\\\\\\\\///\n"

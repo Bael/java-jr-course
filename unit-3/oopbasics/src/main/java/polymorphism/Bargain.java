@@ -3,12 +3,14 @@ package polymorphism;
 import inheritance.Animal;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import lombok.Builder;
 
 /**
  * Сделка по продаже животного
  */
 public class Bargain {
 
+    @Builder
     public Bargain(Animal animal, BigDecimal cost, String previousOwner, String newOwner, LocalDate bargainDate) {
         this.animal = animal;
         this.cost = cost;
@@ -23,6 +25,10 @@ public class Bargain {
     private String newOwner;
     private LocalDate bargainDate;
 
+    public Bargain() {
+
+    }
+
     @Override
     public String toString() {
         return "Продажа животного {" +
@@ -31,6 +37,7 @@ public class Bargain {
             ", от владельца ='" + previousOwner + '\'' +
             ", новому владельцу='" + newOwner + '\'' +
             ", дата сделки=" + bargainDate +
+            ", рисунок животного=\n" + animal.paint() +
             '}';
     }
 }

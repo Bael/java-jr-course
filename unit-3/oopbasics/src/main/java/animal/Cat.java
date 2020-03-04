@@ -9,34 +9,41 @@ import lombok.Getter;
 
 @Getter
 public class Cat {
-
-    private String[] awards;
-
+     String[] awards;
     /**
      * Код родословной
      */
-    private String passportCode;
+     String passportCode;
+
     /**
      * имя
      */
-    private String name;
+     String name;
+
     /**
      * Окрас
      */
-    private String color;
+     String color;
+
     /**
      * вес
      */
-    private double weight;
+     double weight;
     /**
      * список владельцев
      */
-    private String[] owners;
+
+     private String[] owners;
+     public String[] getOwners() {
+         return owners;
+     }
+
     /**
      * запрашиваемая стоимость
      */
-    private Long cost;
-    private LocalDate birthDay;
+     Long cost;
+
+     LocalDate birthDay;
 
     public Cat(String[] awards, String passportCode, String name, String color, double weight, String[] owners,
         Long cost, LocalDate birthDay) {
@@ -54,24 +61,17 @@ public class Cat {
     }
 
     /**
-     * возраст
+     * Метод рассчитывающий возраст кота в годах.
+     * Пред условие - наличие дня рождения,
+     * если его нет - бросаем исключение.
+     * Пост условие - возращается возраст в годах.
      */
     public int getAge() {
         if (birthDay != null) {
-
             return (int) ChronoUnit.YEARS.between(birthDay, LocalDate.now());
-
         } else {
             throw new RuntimeException("Не указана дата рождения кота!");
         }
-    }
-
-//    public Cat(Date birthDay) {
-//        this.birthDay = birthDay;
-//    }
-
-    public void sleep(int duration, String site) {
-        // some code ...
     }
 
     /**
@@ -92,20 +92,12 @@ public class Cat {
     }
 
     private void eat(Object food) {
-
-    }
-
-    private void lickTummy() {
-
     }
 
     String speak(String text) {
+        String name = this.name != null ? this.name : "Безымянный";
         return paint() + System.lineSeparator()
-            + " Meooowwwww " + text;
-    }
-
-    public LocalDate getBirthDay() {
-        return birthDay;
+            + name +  " speaks: Meooowwwww " + text;
     }
 
     public String paint() {
