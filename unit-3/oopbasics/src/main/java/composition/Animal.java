@@ -1,4 +1,4 @@
-package interfaces;
+package composition;
 
 import lombok.Getter;
 
@@ -25,16 +25,9 @@ public abstract class Animal {
      * вес
      */
     protected double weight;
-//    /**
-//     * список владельцев
-//     */
-//
-//    protected String[] awards;
-//    protected String[] owners;
     /**
      * запрашиваемая стоимость
      */
-//    protected Long cost;
     protected LocalDate birthDay;
 
     public Animal() {
@@ -46,11 +39,6 @@ public abstract class Animal {
         this.weight = weight;
         this.birthDay = birthDay;
     }
-
-
-//    public String[] getOwners() {
-//        return owners;
-//    }
 
     /**
      * Метод рассчитывающий возраст кота в годах.
