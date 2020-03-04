@@ -1,6 +1,7 @@
 package inheritance;
 
 import animal.Feeder;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
@@ -12,12 +13,12 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Dog extends Animal {
 
-
-    public Dog(String[] awards, String passportCode, int age, String name, double weight, String[] owners,
-        Long cost, double tailLength, double length, String meow, Date birthDay) {
-        super(awards, passportCode, age, name, weight, owners, cost, tailLength, length, meow, birthDay);
+    public Dog(String[] awards, String passportCode, String name, String color, double weight, String[] owners,
+        Long cost, LocalDate birthDay) {
+        super(awards, passportCode, name, color, weight, owners, cost, birthDay);
     }
-//    /**
+
+    /**
 //     * Позвать кота пообедать
 //     * Предусловие:
 //     *
@@ -34,13 +35,7 @@ public class Dog extends Animal {
 //        eat(feeder.getFood());
 //    }
 
-
-    String woof() {
-        return paint() + System.lineSeparator()
-            + meow;
-    }
-
-
+    @Override
     public String paint() {
         return "  __      _\n"
             + "o'')}____//\n"
