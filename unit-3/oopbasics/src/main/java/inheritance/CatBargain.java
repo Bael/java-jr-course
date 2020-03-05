@@ -1,6 +1,6 @@
 package inheritance;
 
-import animal.Cat;
+import simple.Cat;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

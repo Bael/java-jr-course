@@ -29,4 +29,29 @@ public class Cat extends Animal {
             + " ((_/`(____,-'";
     }
 
+    protected void setWet(boolean wet) {
+        if (wet) {
+            throw new RuntimeException("Кот не должен купаться!");
+        }
+        this.isWet = wet;
+    }
+
+    /**
+     * Позволяем мыть только короткое время, меньше секунды
+     * это наш контракт!
+     * */
+    protected void wet(long duration, String location) {
+        if (duration > 2) {
+            setWet(true);
+        }
+        dry();
+    }
+
+    @Override
+    protected void wet(long duration) {
+        if (duration > 2) {
+            setWet(true);
+        }
+        dry();
+    }
 }

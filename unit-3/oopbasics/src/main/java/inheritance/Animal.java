@@ -50,10 +50,6 @@ public abstract class Animal {
         this.birthDay = birthDay;
     }
 
-    public String[] getOwners() {
-        return owners;
-    }
-
     /**
      * Метод рассчитывающий возраст кота в годах.
      * Пред условие - наличие дня рождения,
@@ -68,7 +64,7 @@ public abstract class Animal {
         }
     }
 
-    //?????
+    //????? как выглядит животное???
 //    public String paint() {
 //        return " ,_     _\n"
 //            + " |\\\\_,-~/\n"
@@ -82,6 +78,36 @@ public abstract class Animal {
 //            + " ((_/`(____,-'";
 //    }
 
+    /**
+     * Мы не можем этого знать, возлагаем это на потомков.
+     * @return
+     */
     public abstract String paint();
+
+    public String speak(String text) {
+        String name = this.name != null ? this.name : "Безымянный";
+        return paint() + System.lineSeparator()
+            + name + " speaks: " + text;
+    }
+
+    protected boolean isWet;
+
+    protected void setWet(boolean wet) {
+        isWet = wet;
+    }
+
+    protected void clean(long duration) {
+        wet(duration);
+        dry();
+    }
+
+    protected void wet(long duration) {
+        setWet(true);
+    }
+
+    protected void dry() {
+        setWet(false);
+    }
+
 
 }

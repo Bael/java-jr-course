@@ -1,4 +1,4 @@
-package animal;
+package simple;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
